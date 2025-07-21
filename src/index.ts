@@ -1,4 +1,4 @@
-function holaNombre(nombre: String): string {
+function holaNombre(nombre: string): string {
   return "Hola " + nombre;
 }
 // @ts-check
