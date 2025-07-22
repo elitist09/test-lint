@@ -24,3 +24,6 @@ jobs:
 
       - name: Ejecutar ESLint
         run: npx eslint . --ext .ts,.tsx --max-warnings=0
+      
+      - name: build
+        run: npm run build
