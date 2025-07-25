@@ -1,29 +1,37 @@
-name: Lint Check
+name: Lint Check  # Nombre del workflow que aparecerá en la UI de GitHub Actions
 
 on:
   push:
-    branches: ["**"]
+    branches: ["**"]        # Ejecutar en cualquier push, a cualquier rama
   pull_request:
-    branches: ["**"]
+    branches: ["**"]        # Ejecutar en cualquier pull request, a cualquier rama
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Runner donde se ejecutarán los pasos (sistema operativo Ubuntu)
 
     steps:
+      # Paso 1: Clonar el repositorio en el runner
       - name: Clonar el repo
         uses: actions/checkout@v4
 
+      # Paso 2: Configurar la versión de Node.js
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # o la versión que uses
+          node-version: '20'  # Especificar la versión exacta de Node requerida por el proyecto
 
+      # Paso 3: Instalar las dependencias definidas en package.json
       - name: Instalar dependencias
         run: npm install
 
+      # Paso 4: Ejecutar ESLint
       - name: Ejecutar ESLint
         run: npx eslint . --ext .ts,.tsx --max-warnings=0
-      
+        # - Analiza todos los archivos del proyecto con extensiones .ts y .tsx
+        # - Si se detecta al menos una advertencia, el proceso falla
+
+      # Paso 5: Ejecutar el build del proyecto
       - name: build
         run: npm run build
+        # - Verifica que el proyecto pueda compilar sin errores
