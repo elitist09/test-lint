@@ -25,18 +25,24 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
-      # Paso 4: Ejecutar ESLint
+      # Paso 4: Ejecuta el verificador de tipo sin compilar
+      
+      - name: Verificar tipos con TypeScript
+        run: npx tsc --noEmit
+
+
+      # Paso 5: Ejecutar ESLint
       - name: Ejecutar ESLint
         run: npx eslint . --ext .ts,.tsx --max-warnings=0
         # - Analiza todos los archivos del proyecto con extensiones .ts y .tsx
         # - Si se detecta al menos una advertencia, el proceso falla
 
-      # Paso 5: Ejecutar tests
+      # Paso 6: Ejecutar tests
       - name: Ejecutar tests
-        run: npm test
+        run: npm test:coverage
 
 
-      # Paso 6: Ejecutar el build del proyecto
+      # Paso 7: Ejecutar el build del proyecto
       - name: build
         run: npm run build
         # - Verifica que el proyecto pueda compilar sin errores
