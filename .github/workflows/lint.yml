@@ -31,7 +31,12 @@ jobs:
         # - Analiza todos los archivos del proyecto con extensiones .ts y .tsx
         # - Si se detecta al menos una advertencia, el proceso falla
 
-      # Paso 5: Ejecutar el build del proyecto
+      # Paso 5: Ejecutar tests
+      - name: Ejecutar tests
+        run: npm test
+
+
+      # Paso 6: Ejecutar el build del proyecto
       - name: build
         run: npm run build
         # - Verifica que el proyecto pueda compilar sin errores
